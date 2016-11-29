@@ -19,19 +19,21 @@ public class ScoreMaster {
 
 	// Return a list of individual frame scores, NOT cumulative.
 	public static List<int> ScoreFrames (List<int> rolls) {
-		List<int> frameList = new List<int>();
-		int frameScore = 0;
-		int rollCount = 0;
+		List<int> frames = new List<int>();
 
-		foreach(int roll in rolls) {
-			rollCount++;
-			frameScore += roll;
-			if (rollCount % 2 == 0) {
-				frameList.Add(frameScore);
-				frameScore = 0;
+		for (int i = 1; i < rolls.Count; i += 2) {
+			if(rolls[i-1] + rolls[i] < 10) {	//Normal "open" frame
+				frames.Add(rolls[i - 1] + rolls[i]);
+			}
+			if(rolls[i-1] + rolls[i] == 10 && i + 1 < rolls.Count) {	//Spare
+				frames.Add(rolls[i - 1] + rolls[i] + rolls[i + 1]);
+			}
+			if(rolls[i - 1] == 10 && i + 1 < rolls.Count) {    //Strike
+				frames.Add(10 + rolls[i] + rolls[i + 1]);
+				if(i < 19) { i--; }
 			}
 		}
-		return frameList;
+		return frames;
 	}
 
 	
