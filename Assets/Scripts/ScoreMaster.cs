@@ -17,7 +17,7 @@ public class ScoreMaster {
 		return cumulativeScores;
 	}
 
-	// Return a list of individual frame scores, NOT cumulative.
+	// Return a list of individual frame scores
 	public static List<int> ScoreFrames (List<int> rolls) {
 		List<int> frames = new List<int>();
 
@@ -25,17 +25,15 @@ public class ScoreMaster {
 			if(rolls[i-1] + rolls[i] < 10) {	//Normal "open" frame
 				frames.Add(rolls[i - 1] + rolls[i]);
 			}
-			if(rolls[i-1] + rolls[i] == 10 && i + 1 < rolls.Count) {	//Spare
-				frames.Add(rolls[i - 1] + rolls[i] + rolls[i + 1]);
-			}
-			if(rolls[i - 1] == 10 && i + 1 < rolls.Count) {    //Strike
+			else if(rolls[i - 1] == 10 && i + 1 < rolls.Count) {    //Strike
 				frames.Add(10 + rolls[i] + rolls[i + 1]);
-				if(i < 19) { i--; }
+				if(frames.Count < 10) { i--; }						//Adjusts index if not on last frame
+			} 
+			else if (rolls[i-1] + rolls[i] == 10 && i + 1 < rolls.Count) {	//Spare
+				frames.Add(10 + rolls[i + 1]);
 			}
 		}
 		return frames;
 	}
-
-	
 
 }

@@ -6,17 +6,17 @@ using System.Linq;
 
 [TestFixture]
 public class ScoreMasterTest {
-	
+
 	[Test]
-	public void T00PassingTest () {
-		Assert.AreEqual (1, 1);
+	public void T00PassingTest() {
+		Assert.AreEqual(1, 1);
 	}
 
 	[Test]
-	public void T01Bowl23 () {
-		int[] rolls = {2,3};
-		int[] frames = { 5};
-		Assert.AreEqual (frames.ToList(), ScoreMaster.ScoreFrames (rolls.ToList()));
+	public void T01Bowl23() {
+		int[] rolls = { 2, 3 };
+		int[] frames = { 5 };
+		Assert.AreEqual(frames.ToList(), ScoreMaster.ScoreFrames(rolls.ToList()));
 	}
 
 	[Test]
@@ -98,8 +98,8 @@ public class ScoreMasterTest {
 
 	[Test]
 	public void T13StrikeBonus3() {
-		int[] rolls =	{1, 2,	3, 4,	5, 4,	3, 2,	10, 1, 3,	3, 4 };
-		int[] frames =	{3,		7,		9,		5,		14, 4,		7 };
+		int[] rolls = { 1, 2, 3, 4, 5, 4, 3, 2, 10, 1, 3, 3, 4 };
+		int[] frames = { 3, 7, 9, 5, 14, 4, 7 };
 		Assert.AreEqual(frames.ToList(), ScoreMaster.ScoreFrames(rolls.ToList()));
 	}
 
@@ -154,8 +154,8 @@ public class ScoreMasterTest {
 
 	[Test]
 	public void T21StrikeInLastFrame() {
-		int[] rolls =	{ 1, 1,	1, 1,	1, 1,	1, 1,	1, 1,	1, 1,	1, 1,	1, 1,	1, 1,	10, 2, 3 };
-		int[] totalS =	{ 2,	4,		6,		8,		10,		12,		14,		16,		18,		33 };
+		int[] rolls = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10, 2, 3 };
+		int[] totalS = { 2, 4, 6, 8, 10, 12, 14, 16, 18, 33 };
 		Assert.AreEqual(totalS.ToList(), ScoreMaster.ScoreCumulative(rolls.ToList()));
 	}
 
@@ -166,15 +166,6 @@ public class ScoreMasterTest {
 		int[] rolls = { 10, 7, 3, 9, 0, 10, 0, 8, 8, 2, 0, 6, 10, 10, 10, 8, 1 };
 		int[] totalS = { 20, 39, 48, 66, 74, 84, 90, 120, 148, 167 };
 		Assert.AreEqual(totalS.ToList(), ScoreMaster.ScoreCumulative(rolls.ToList()));
-	}
-
-	//http://slocums.homestead.com/gamescore.html
-	[Category("Verification")]
-	[Test]
-	public void TG02GoldenCopyAv2() {
-		int[] rolls = { 10, 7, 3, 9, 0, 10, 0, 8, 8, 2, 0, 6, 10, 10, 10, 8, 1 };
-		int[] frames = { 20, 19, 9, 18, 8, 10, 6, 30, 28, 19 };
-		Assert.AreEqual(frames.ToList(), ScoreMaster.ScoreFrames(rolls.ToList()));
 	}
 
 	//http://guttertoglory.com/wp-content/uploads/2011/11/score-2011_11_28.png
