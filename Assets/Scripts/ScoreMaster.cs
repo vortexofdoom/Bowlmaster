@@ -20,9 +20,17 @@ public class ScoreMaster {
 	// Return a list of individual frame scores, NOT cumulative.
 	public static List<int> ScoreFrames (List<int> rolls) {
 		List<int> frameList = new List<int>();
+		int frameScore = 0;
+		int rollCount = 0;
 
-
-
+		foreach(int roll in rolls) {
+			rollCount++;
+			frameScore += roll;
+			if (rollCount % 2 == 0) {
+				frameList.Add(frameScore);
+				frameScore = 0;
+			}
+		}
 		return frameList;
 	}
 
