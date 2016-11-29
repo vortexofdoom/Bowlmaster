@@ -10,8 +10,6 @@ public class ActionMaster {
 
 	public PinSetter pinSetter;
 
-	
-
 	public static Action NextAction(List<int> pinFalls) {
 		ActionMaster am = new ActionMaster();
 		Action currentAction = new Action();
@@ -23,7 +21,7 @@ public class ActionMaster {
 		return currentAction;
 	}
 
-	public Action Bowl(int pins) {
+	private Action Bowl(int pins) {
 		if(pins < 0 || pins > 10) {throw new UnityException("Invalid pins");}
 
 		bowls[bowl - 1] = pins;
